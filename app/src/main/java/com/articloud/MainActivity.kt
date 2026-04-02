@@ -21,6 +21,44 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Seleccionar Inicio por defecto
+        binding.bottomNav.selectedItemId = R.id.nav_home
+
+        // navegacion
+        binding.bottomNav.setOnItemSelectedListener {
+
+            when(it.itemId) {
+
+                R.id.nav_home -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, HomeFragment())
+                        .commit()
+                }
+
+                R.id.nav_cart -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, CartFragment())
+                        .commit()
+                }
+
+                R.id.nav_profile -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragmentContainer, ProfileFragment())
+                        .commit()
+                }
+            }
+
+            true
+        }
+
+
+        //Contador de carrito..........
+        val badge = binding.bottomNav.getOrCreateBadge(R.id.nav_cart)
+        badge.isVisible = true
+        badge.number = 2
+        badge.backgroundColor = getColor(R.color.gold)
+        badge.badgeTextColor = getColor(R.color.black_main)
+
         val artworks = listOf(
             Artwork(
                 1,
@@ -48,31 +86,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.bottomNav.setOnItemSelectedListener {
 
-            when(it.itemId) {
-
-                R.id.nav_home -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, HomeFragment())
-                        .commit()
-                }
-
-                R.id.nav_cart -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, CartFragment())
-                        .commit()
-                }
-
-                R.id.nav_profile -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, ProfileFragment())
-                        .commit()
-                }
-            }
-
-            true
-        }
 // se deja de usar porque los recicler views pasan a fragments
 //        binding.recyclerView.layoutManager = LinearLayoutManager(this)
 //        binding.recyclerView.adapter = adapter
