@@ -8,8 +8,8 @@ import com.articloud.adapter.ArtworkAdapter
 import com.articloud.databinding.ActivityMainBinding
 import com.articloud.model.Artwork
 import com.articloud.ui.CartFragment
+import com.articloud.ui.FavoritesFragment
 import com.articloud.ui.HomeFragment
-import com.articloud.ui.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,10 +42,20 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_profile -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainer, ProfileFragment())
-                        .commit()
+
+                    if (SessionManager.isLogged(this)) {
+                        startActivity(Intent(this, ProfileActivity::class.java))
+                    } else {
+                        startActivity(Intent(this, LoginActivity::class.java))
+                    }
+
                 }
+
+                R.id.nav_fav -> supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, FavoritesFragment())
+                    .commit()
+
+
             }
 
             true
@@ -91,4 +101,5 @@ class MainActivity : AppCompatActivity() {
 //        binding.recyclerView.layoutManager = LinearLayoutManager(this)
 //        binding.recyclerView.adapter = adapter
     }
+
 }

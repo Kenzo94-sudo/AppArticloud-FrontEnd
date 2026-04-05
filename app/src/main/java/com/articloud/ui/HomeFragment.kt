@@ -1,5 +1,6 @@
 package com.articloud.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.articloud.LoginActivity
+import com.articloud.ProfileActivity
 import com.articloud.R
 import com.articloud.SessionManager
 import com.articloud.adapter.ArtworkAdapter
@@ -30,6 +33,33 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    //actualizar home automaticamente
+    override fun onResume() {
+        super.onResume()
+
+        val isLogged = SessionManager.isLogged(requireContext())
+
+        if (isLogged) {
+            val name = SessionManager.getName(requireContext())
+
+            binding.btnGuest.visibility = View.GONE
+            binding.iconBell.visibility = View.VISIBLE
+            binding.txtProfile.visibility = View.VISIBLE
+            binding.txtLogin.visibility = View.GONE
+
+            binding.txtProfile.text = name.first().toString()
+            binding.txtWelcome.text = name.uppercase()
+
+        } else {
+            binding.btnGuest.visibility = View.VISIBLE
+            binding.iconBell.visibility = View.GONE
+            binding.txtProfile.visibility = View.GONE
+            binding.txtLogin.visibility = View.VISIBLE
+
+            binding.txtWelcome.text = "INVITADO"
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,15 +78,21 @@ class HomeFragment : Fragment() {
 
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(),2)
         binding.recyclerView.adapter = adapter
-        binding.txtProfile.text = "G" // primera letra del nombre
 
+        binding.txtProfile.setOnClickListener {
+            if (SessionManager.isLogged(requireContext())) {
+                startActivity(Intent(requireContext(), ProfileActivity::class.java))
+            } else {
+                startActivity(Intent(requireContext(), LoginActivity::class.java))
+            }
+        }
         // OBRA DESTACADA
         Glide.with(this)
             .load("https://media.gq.com.mx/photos/60c4fa6dfc378adc79f5f139/16:9/w_1920,c_limit/grito-1035007370.jpg")
             .into(binding.imgFeatured)
 
         // LOGIN
-        if (SessionManager.isLogged) {
+        if (SessionManager.isLogged(requireContext())) {
             binding.btnGuest.visibility = View.GONE
             binding.iconBell.visibility = View.VISIBLE
             binding.txtProfile.visibility = View.VISIBLE
@@ -67,13 +103,14 @@ class HomeFragment : Fragment() {
         }
 
         binding.txtLogin.setOnClickListener {
-            // abrir login activity
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
 
-
+        binding.btnGuest.setOnClickListener {
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+        }
 
         return binding.root
-
 
     }
 }

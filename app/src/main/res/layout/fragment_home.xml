@@ -1,166 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#555658"><!--Fondo del la app crtl+shif+/ -->
+    android:background="#0D0D0D">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <!-- TEXTO -->
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
-                    android:text="BIENVENIDO"
-                    android:textColor="#AAAAAA"
-                    android:textSize="12sp"
+                    android:id="@+id/txtWelcome"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="EXPLORA SIN LÍMITES"
+                    android:textColor="#D4AF37"
+                    android:textSize="12sp" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="ArtiCloud"
                     android:textColor="#FFFFFF"
                     android:textSize="26sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- BOTÓN INVITADO -->
             <Button
                 android:id="@+id/btnGuest"
-                android:text="Invitado"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#333333"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:background="@drawable/bd_gold_button"
+                android:elevation="4dp"
+                android:text="Invitado"
+                android:textColor="@color/gold" />
 
-            <!-- ICONO NOTIFICACIÓN -->
             <ImageView
                 android:id="@+id/iconBell"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:src="@android:drawable/ic_dialog_info"
-                android:visibility="gone"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
+                android:visibility="gone" />
 
-            <!-- PERFIL -->
             <TextView
                 android:id="@+id/txtProfile"
-                android:text="A"
-                android:textColor="#000000"
-                android:backgroundTint="#D4AF37"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:background="@drawable/bg_circle"
                 android:gravity="center"
-                android:visibility="gone"
-                android:layout_width="40dp"
-                android:layout_height="40dp"/>
+                android:text="A"
+                android:textColor="#000000"
+                android:visibility="gone" />
         </LinearLayout>
 
-        <!-- BUSCADOR -->
         <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_search"
             android:hint="Buscar obras, artistas..."
-            android:textColor="#FFFFFF"
-            android:background="#fcfcfc"
             android:padding="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray_text" />
 
-        <!-- OBRA DESTACADA -->
-        <ImageView
-            android:id="@+id/imgFeatured"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="12dp"
-            android:scaleType="centerCrop"/>
-
-        <!-- CATEGORÍAS -->
-        <TextView
-            android:text="Categorías"
-            android:textStyle="bold"
-            android:layout_marginTop="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:src="@android:drawable/ic_menu_gallery"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"/>
-
-                <ImageView
-                    android:src="@android:drawable/ic_menu_camera"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="8dp"/>
-
-                <ImageView
-                    android:src="@android:drawable/ic_menu_compass"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="8dp"/>
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <!-- NUEVAS OBRAS -->
         <LinearLayout
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="#1A1A1A"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imgFeatured"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginBottom="8dp"
+                android:scaleType="centerCrop" />
 
             <TextView
-                android:text="Nuevas obras"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:text="Ver todo ->"
-                android:textColor="#007BFF"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:text="OBRA DESTACADA"
+                android:textColor="#D4AF37"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Silence of Forms"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="por Yuki Tanaka"
+                android:textColor="#AAAAAA"
+                android:textSize="12sp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:elevation="4dp"
+                android:text="Ver obra · S/ 2,100"
+                android:textColor="@color/black_main"
+                android:textColorLink="#E0AF65" />
         </LinearLayout>
 
-        <!-- LISTA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Nuevas obras"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver todas →"
+                android:textColor="#D4AF37" />
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-        <!-- LOGIN -->
-        <TextView
-            android:id="@+id/txtLogin"
-            android:text="Inicia sesión o regístrate"
-            android:textColor="#FF0000"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
+        <LinearLayout
+            android:id="@+id/layoutLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/gray"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Listo para coleccionar?"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Inicia sesión para comprar y guardar obras."
+                android:textColor="#CCCCCC" />
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bd_gold_button"
+                android:elevation="4dp"
+                android:text="Iniciar sesión →"
+                android:textColor="#000000" />
+        </LinearLayout>
 
     </LinearLayout>
 
